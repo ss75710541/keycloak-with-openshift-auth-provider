@@ -80,7 +80,7 @@ objects:
             value: admin
           - name: KEYCLOAK_PASSWORD
             value: ${KEYCLOAK_PASSWORD}
-          image: 'docker.io/jboss/keycloak-openshift:3.4.0.Final'
+          image: ${KEYCLOAK_IMAGE}
           imagePullPolicy: IfNotPresent
           name: keycloak
           ports:
@@ -102,3 +102,6 @@ parameters:
   from: '[A-Z0-9]{8}'
   generate: expression
   name: KEYCLOAK_PASSWORD
+- description: Keycloak image
+  name: KEYCLOAK_IMAGE
+  value: docker.io/jboss/keycloak:4.8.3.Final
