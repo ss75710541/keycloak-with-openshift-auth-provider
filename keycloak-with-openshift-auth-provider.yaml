@@ -23,6 +23,10 @@ objects:
         port: 80
         protocol: TCP
         targetPort: 8080
+      - name: web-https
+        port: 443
+        protocol: TCP
+        targetPort: 8443
     selector:
       app: keycloak
       service: keycloak
@@ -34,10 +38,12 @@ objects:
     labels:
       app: keycloak
       service: keycloak
-    name: keycloak
+    name: keycloak-https
   spec:
     port:
-      targetPort: web
+      targetPort: web-https
+    tls:
+      termination: passthrough
     to:
       kind: Service
       name: keycloak
